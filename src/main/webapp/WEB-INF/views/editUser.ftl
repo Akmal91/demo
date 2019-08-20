@@ -7,7 +7,7 @@
 <body>
 <form name="user" action="/updateUser" method="post">
     <p>Id</p>
-    <input title="Id" type="text" name="id" value="${user.id}">
+    <input title="Id" type="hidden" name="id" value="${user.id}" disabled>
     <p>Name</p>
     <input title="Name" type="text" name="name" value="${user.name}">
     <p>Email</p>

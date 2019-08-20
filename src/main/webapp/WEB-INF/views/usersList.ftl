@@ -109,24 +109,5 @@
 <!--===============================================================================================-->
 <script src="resources/Table_Fixed_Column/js/main.js"></script>
 
-
-<#--<h1>Users list</h1>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Age</th>
-    </tr>
-    <#list users as user>
-        <tr>
-            <td><a href="/cv?id=${user.id}">${user.id}</a></td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.age}</td>
-        </tr>
-    </#list>
-</table>-->
-
 </body>
 </html>

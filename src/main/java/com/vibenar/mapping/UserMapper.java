@@ -1,13 +1,12 @@
 package com.vibenar.mapping;
 
 import com.vibenar.entity.User;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMapping implements RowMapper<User> {
+public class UserMapper implements RowMapper<User> {
 
 
     public User mapRow(ResultSet resultSet, int i) throws SQLException {

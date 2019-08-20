@@ -1,5 +1,6 @@
 package com.vibenar.controller;
 
+import com.itextpdf.text.DocumentException;
 import com.vibenar.entity.User;
 import com.vibenar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/")
 public class UserController {
+
+//    public static int uid;
 
     @Autowired
     public UserService userService;
@@ -48,6 +52,7 @@ public class UserController {
     public String getCV(Model model, @RequestParam(value = "id") Integer id){
         List<User> list = userService.getUser(id);
         model.addAttribute("user", list.get(0));
+
         return "userCV";
     }
 
@@ -58,6 +63,7 @@ public class UserController {
 
     @PostMapping("/updateUser")
     public String updateUser(@ModelAttribute("user") User user){
+//        user.setId(uid);
         userService.update(user);
         return "redirect:/cv?id="+user.getId();
     }
@@ -76,8 +82,15 @@ public class UserController {
 
     @GetMapping("/update/{id}")
     public String updateUser(@PathVariable("id") int id, Model model){
+//        uid = id;
         model.addAttribute("user", userService.getUser(id).get(0));
         return "editUser";
+    }
+
+    @GetMapping("/pdf/{id}")
+    public String convertToPdf(@PathVariable("id") int id) throws IOException{
+        userService.convertToPdf(id);
+        return "redirect:/users";
     }
 
 }
