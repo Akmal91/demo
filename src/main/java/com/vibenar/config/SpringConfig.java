@@ -1,5 +1,7 @@
 package com.vibenar.config;
 
+import com.vibenar.controller.ExportToPdf;
+import com.vibenar.controller.ExportToPdfIn;
 import com.vibenar.dao.UserDao;
 import com.vibenar.dao.UserDaoImpl;
 import com.vibenar.service.UserService;
@@ -38,5 +40,10 @@ public class SpringConfig {
     @Bean
     public UserService getUserService(){
         return new UserServiceImpl();
+    }
+
+    @Bean
+    public ExportToPdfIn getEx(){
+        return new ExportToPdf(getJdbcTemplate());
     }
 }

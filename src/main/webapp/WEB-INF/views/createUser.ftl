@@ -11,8 +11,6 @@
     <input title="Name" type="text" name="name">
     <p>Email</p>
     <input title="Email" type="text" name="email">
-    <p>Age</p>
-    <input title="Age" type="text" name="age">
     <input type="submit" value="ok">
 </form>
 

@@ -5,7 +5,6 @@ import com.vibenar.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -24,10 +23,6 @@ public class UserServiceImpl implements UserService {
 
     public void update(User user) {
         userDao.update(user);
-    }
-
-    public void convertToPdf(int id) throws IOException {
-        userDao.convertToPdf(id);
     }
 
     public List<User> findAll() {

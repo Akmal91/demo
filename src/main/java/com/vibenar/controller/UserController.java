@@ -87,10 +87,4 @@ public class UserController {
         return "editUser";
     }
 
-    @GetMapping("/pdf/{id}")
-    public String convertToPdf(@PathVariable("id") int id) throws IOException{
-        userService.convertToPdf(id);
-        return "redirect:/users";
-    }
-
 }

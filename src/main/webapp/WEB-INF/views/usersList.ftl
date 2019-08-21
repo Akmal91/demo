@@ -54,7 +54,6 @@
                             <tr class="row100 head">
                                 <th class="cell100 column2">Name</th>
                                 <th class="cell100 column3">Email</th>
-                                <th class="cell100 column4">Age</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,7 +61,6 @@
                             <tr class="row100 body">
                                 <td class="cell100 column2">${user.name}</td>
                                 <td class="cell100 column3">${user.email}</td>
-                                <td class="cell100 column4">${user.age}</td>
                                 <td class="cell100 column5"><a href="/delete/${user.id}">Delete</a></td>
                                 <td class="cell100 column6"><a href="/update/${user.id}">Update</a></td>
                             </tr>
