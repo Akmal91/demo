@@ -24,8 +24,8 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void save(User user) {
-        String sql = "insert into public.users (name, email) values (?, ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail());
+        String sql = "insert into public.users (name, login, password, email) values (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.getName(), user.getLogin(), user.getPassword(), user.getEmail());
     }
 
     public void delete(int id) {

@@ -2,8 +2,12 @@ package com.vibenar.config;
 
 import com.vibenar.controller.ExportToPdf;
 import com.vibenar.controller.ExportToPdfIn;
+import com.vibenar.dao.EmployeesDao;
+import com.vibenar.dao.EmployeesDaoImpl;
 import com.vibenar.dao.UserDao;
 import com.vibenar.dao.UserDaoImpl;
+import com.vibenar.service.EmployeesService;
+import com.vibenar.service.EmployeesServiceImpl;
 import com.vibenar.service.UserService;
 import com.vibenar.service.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +44,16 @@ public class SpringConfig {
     @Bean
     public UserService getUserService(){
         return new UserServiceImpl();
+    }
+
+    @Bean
+    public EmployeesDao getEmployeesDao(){
+        return new EmployeesDaoImpl(getJdbcTemplate());
+    }
+
+    @Bean
+    public EmployeesService getEmployeesService(){
+        return new EmployeesServiceImpl();
     }
 
     @Bean

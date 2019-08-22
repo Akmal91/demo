@@ -1,5 +1,6 @@
 package com.vibenar.mapping;
 
+import com.vibenar.entity.Employees;
 import com.vibenar.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,4 +19,5 @@ public class UserMapper implements RowMapper<User> {
         user.setPassword(resultSet.getString("password"));
         return user;
     }
+
 }

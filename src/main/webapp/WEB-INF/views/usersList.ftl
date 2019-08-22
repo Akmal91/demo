@@ -38,9 +38,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list users as user>
+                        <#list employees as employee>
                         <tr class="row100 body">
-                            <td class="cell100 column1"><a href="/cv?id=${user.id}">${user.id}</a></td>
+                            <td class="cell100 column1"><a href="/cv?id=${employee.id}">${employee.id}</a></td>
                         </tr>
                         </#list>
                         </tbody>
@@ -53,22 +53,30 @@
                             <thead>
                             <tr class="row100 head">
                                 <th class="cell100 column2">Name</th>
-                                <th class="cell100 column3">Email</th>
+                                <th class="cell100 column3">Last name</th>
+                                <th class="cell100 column4">Email</th>
+                                <th class="cell100 column5">Nationality</th>
+                                <th class="cell100 column6">Date of birth</th>
+                                <th class="cell100 column7">Phone</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <#list users as user>
+                            <#list employees as employee>
                             <tr class="row100 body">
-                                <td class="cell100 column2">${user.name}</td>
-                                <td class="cell100 column3">${user.email}</td>
-                                <td class="cell100 column5"><a href="/delete/${user.id}">Delete</a></td>
-                                <td class="cell100 column6"><a href="/update/${user.id}">Update</a></td>
+                                <td class="cell100 column2">${employee.name}</td>
+                                <td class="cell100 column3">${employee.last_name}</td>
+                                <td class="cell100 column4">${employee.email}</td>
+                                <td class="cell100 column5">${employee.nationality}</td>
+                                <td class="cell100 column6">${employee.date_of_birth}</td>
+                                <td class="cell100 column7">${employee.phone}</td>
+                                <td class="cell100 column8"><a href="/delete/${employee.id}">Delete</a></td>
+                                <td class="cell100 column9"><a href="/update/${employee.id}">Update</a></td>
                             </tr>
                             </#list>
                             </tbody>
                         </table>
                         <br>
-                        <a href="/addUser">Create User</a>
+                        <a href="/addUser">Create Employee</a>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,14 @@
 package com.vibenar.controller;
 
-import com.itextpdf.text.DocumentException;
+import com.vibenar.entity.Employees;
 import com.vibenar.entity.User;
+import com.vibenar.service.EmployeesService;
 import com.vibenar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -16,26 +16,15 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
 
-//    public static int uid;
-
     @Autowired
     public UserService userService;
 
+    @Autowired
+    public EmployeesService employeesService;
+
     @GetMapping("/")
     public String getIndex(){
-
         return "index";
-    }
-
-    @GetMapping("/hello")
-    public String getHello(){
-        return "hello";
-    }
-
-    @GetMapping("/users")
-    public String getAllUsers(Model model){
-        model.addAttribute("users", userService.findAll());
-        return "usersList";
     }
 
     @PostMapping("/login")
@@ -44,16 +33,26 @@ public class UserController {
         if(users==null || users.isEmpty()){
             return "error";
         }
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("employees", employeesService.findAll());
         return "usersList";
     }
 
-    @GetMapping("/cv")
-    public String getCV(Model model, @RequestParam(value = "id") Integer id){
-        List<User> list = userService.getUser(id);
-        model.addAttribute("user", list.get(0));
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id){
+        employeesService.delete(id);
+        return "redirect:/employees";
+    }
 
-        return "userCV";
+    @GetMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") int id, Model model){
+        model.addAttribute("employee", employeesService.getEmployee(id).get(0));
+        return "editUser";
+    }
+
+    @PostMapping("/updateUser")
+    public String updateUser(@ModelAttribute("employee") Employees emp){
+        employeesService.update(emp);
+        return "redirect:/cv?id="+emp.getId();
     }
 
     @GetMapping("/addUser")
@@ -61,30 +60,46 @@ public class UserController {
         return "createUser";
     }
 
-    @PostMapping("/updateUser")
-    public String updateUser(@ModelAttribute("user") User user){
-//        user.setId(uid);
-        userService.update(user);
-        return "redirect:/cv?id="+user.getId();
-    }
-
     @PostMapping("/addUser")
-    public String addUser(@ModelAttribute("user") User user){
+    public String addUser(@ModelAttribute("employee") Employees emp){
+        employeesService.save(emp);
+        return "redirect:/employees";
+    }
+
+    @PostMapping("/createUser")
+    public String createUser(@ModelAttribute("user") User user, Model model){
         userService.save(user);
-        return "redirect:/users";
+        model.addAttribute("employees", employeesService.findAll());
+        return "usersList";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id){
-        userService.delete(id);
-        return "redirect:/users";
+
+
+
+    @GetMapping("/employees")
+    public String getAllUsers(Model model){
+        model.addAttribute("employees", employeesService.findAll());
+        return "usersList";
     }
 
-    @GetMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") int id, Model model){
-//        uid = id;
-        model.addAttribute("user", userService.getUser(id).get(0));
-        return "editUser";
+    @GetMapping("/register")
+    public String getReg(){
+        return "register";
     }
+
+    @GetMapping("/cv")
+    public String getCV(Model model, @RequestParam(value = "id") Integer id){
+        List<Employees> list = employeesService.getEmployee(id);
+        model.addAttribute("employee", list.get(0));
+        return "userCV";
+    }
+
+
+
+
+
+
+
+
 
 }

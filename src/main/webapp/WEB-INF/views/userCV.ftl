@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>User</h1>
+<h1>employee</h1>
 <table>
     <tr>
         <th>Id</th>
@@ -14,13 +14,13 @@
     </tr>
 
         <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
+            <td>${employee.id}</td>
+            <td>${employee.name}</td>
+            <td>${employee.email}</td>
         </tr>
 
 </table>
 </br>
-<a href="users">Back</a>
+<a href="employees">Back</a>
 </body>
 </html>
